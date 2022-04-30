@@ -6,18 +6,23 @@ Vagrant.configure("2") do | config |
 	config.vm.define "MachineB" do | vm_b |
 	
 		vm_b.vm.provider "virtualbox" do | vb |
-			vb.memory = "2048"
-			vb.name = "MachineB"
+			vb.name = "MachineB"  #  MAchine name
+			vb.memory = "2048"		# allotted RAM in GB
 			vb.gui = true
+
+
 		end	
 		vm_b.vm.box = "gusztavvargadr/windows-10"
 		vm_b.vm.box_version = "2102.0.2204"
-		vm_b.winrm.transport = :plaintext
-		vm_b.winrm.basic_auth_only = true
+
 		vm_b.vm.hostname = "MachineB"
-		vm_b.vm.network "private_network", ip: "10.0.0.19"
+		vm_b.vm.network "private_network", ip: "10.0.0.9" # or 192.168.X.X
 		vm_b.vm.provision "shell", path: ".\\Client.ps1"
 		vm_b.vm.provision "reload"
 		vm_b.vm.boot_timeout = 10000	
+
+		vm_b.winrm.transport = :plaintext
+		vm_b.winrm.basic_auth_only = true
+		# WinRM basic configuration
 	end
 end

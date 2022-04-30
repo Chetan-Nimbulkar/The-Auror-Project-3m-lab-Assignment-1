@@ -2,7 +2,7 @@
 Install-windowsfeature -name AD-Domain-Services -IncludeManagementTools
 Install-WindowsFeature -Name FS-FileServer -IncludeAllSubFeature -IncludeManagementTools
 
-# Sever should RDP into client machine
+# Server should RDP into client machine
 net user Adam Adam@123 /add
 net localgroup "Remote Desktop Users" Adam /add
 
