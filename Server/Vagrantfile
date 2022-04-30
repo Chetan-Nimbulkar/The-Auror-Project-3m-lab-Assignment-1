@@ -1,0 +1,29 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+
+Vagrant.configure("2") do | config |
+
+	config.vagrant.plugins = ["vagrant-reload"]
+	# this solved the main issue
+
+	config.vm.define "MachineA" do | vm_A |
+		vm_A.vm.provider "virtualbox" do | vb |
+			vb.name = "MachineA"
+			vb.memory = "4096" # RAM in GBs
+			vb.gui = true
+		end
+
+		vm_A.vm.box = "gusztavvargadr/windows-server"
+		vm_A.vm.box_version = "1607.0.2112"
+		# source/box/version
+
+		vm_A.winrm.transport = :plaintext
+		vm_A.winrm.basic_auth_only = true
+		vm_A.vm.hostname = "aurordc"
+		vm_A.vm.network "private_network", ip: "10.0.0.9"
+		vm_A.vm.provision "shell", path: ".\\Server.ps1"
+		vm_A.vm.provision "reload"
+		vm_A.vm.boot_timeout = 60000				
+	end
+end
