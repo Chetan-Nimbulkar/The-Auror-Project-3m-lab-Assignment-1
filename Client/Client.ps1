@@ -6,7 +6,7 @@ $chromepath = $env:USERPROFILE + "\Downloads\GoogleChrome.exe"
 Invoke-WebRequest "http://dl.google.com/chrome/install/375.126/chrome_installer.exe" `
 -OutFile $chromepath
 
-Start-Process -FilePath $chromepath -ArgumentList "/install /silent"
+Start-Process -FilePath $chromepath -ArgumentList "/install"
 
 # Set DNS address to client
 Set-DnsClientServerAddress -InterfaceIndex (Get-NetAdapter).InterfaceIndex -ServerAddresses "10.0.0.9"
