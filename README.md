@@ -25,7 +25,7 @@ cd Client
 vagrant up
 ```
 
-update : sometimes vagrant does not set correct hostname even when defined in vagrantfile, simply use command
+update : sometimes vagrant does not set correct hostname even when defined in vagrantfile, simply open powershell in client machine and use this command
 ```
 set Hostname MachineB
 ```
